@@ -1,0 +1,179 @@
+{
+  "openapi":"3.0.2",
+  "info":{
+      "title":"FastAPI",
+      "version":"0.1.0"
+  },
+  "paths":{
+      "/users":{
+          "get":{
+              "summary":"Get List",
+              "operationId":"get_list_users_get",
+              "responses":{
+                  "200":{
+                      "description":"Successful Response",
+                      "content":{
+                          "application/json":{
+                              "schema":{
+
+                              }
+                          }
+                      }
+                  }
+              }
+          },
+          "post":{
+              "summary":"Add",
+              "operationId":"add_users_post",
+              "responses":{
+                  "201":{
+                      "description":"Successful Response",
+                      "content":{
+                          "application/json":{
+                              "schema":{
+
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/users/{user_id}":{
+          "get":{
+              "summary":"Get By Id",
+              "operationId":"get_by_id_users_user_idget",
+              "parameters":[
+                  {
+                      "required":true,
+                      "schema":{
+                          "title":"User Id",
+                          "type":"integer"
+                      },
+                      "name":"user_id",
+                      "in":"path"
+                  }
+              ],
+              "responses":{
+                  "200":{
+                      "description":"Successful Response",
+                      "content":{
+                          "application/json":{
+                              "schema":{
+
+                              }
+                          }
+                      }
+                  },
+                  "422":{
+                      "description":"Validation Error",
+                      "content":{
+                          "application/json":{
+                              "schema":{
+                                  "$ref":"#/components/schemas/HTTPValidationError"
+                              }
+                          }
+                      }
+                  }
+              }
+          },
+          "delete":{
+              "summary":"Remove",
+              "operationId":"remove_usersuser_id_delete",
+              "parameters":[
+                  {
+                      "required":true,
+                      "schema":{
+                          "title":"User Id",
+                          "type":"integer"
+                      },
+                      "name":"user_id",
+                      "in":"path"
+                  }
+              ],
+              "responses":{
+                  "204":{
+                      "description":"Successful Response"
+                  },
+                  "422":{
+                      "description":"Validation Error",
+                      "content":{
+                          "application/json":{
+                              "schema":{
+                                  "$ref":"#/components/schemas/HTTPValidationError"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },"/status":{
+          "get":{
+              "summary":"Get Status",
+              "operationId":"get_status_status_get",
+              "responses":{
+                  "200":{
+                      "description":"Successful Response",
+                      "content":{
+                          "application/json":{
+                              "schema":{
+                              
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      }
+  },
+  "components":{
+      "schemas":{
+          "HTTPValidationError":{
+              "title":"HTTPValidationError",
+              "type":"object",
+              "properties":{
+                  "detail":{
+                      "title":"Detail",
+                      "type":"array",
+                      "items":{
+                          "$ref":"#/components/schemas/ValidationError"
+                      }
+                  }
+              }
+          },
+          "ValidationError":{
+              "title":"ValidationError",
+              "required":[
+                  "loc",
+                  "msg",
+                  "type"
+              ],
+              "type":"object",
+              "properties":{
+                  "loc":{
+                      "title":"Location",
+                      "type":"array",
+                      "items":{
+                          "anyOf":[
+                              {
+                                  "type":"string"
+                              },
+                              {
+                                  "type":"integer"
+                              }
+                          ]
+                      }
+                  },
+                  "msg":{
+                      "title":"Message",
+                      "type":"string"
+                  },
+                  "type":{
+                      "title":"Error Type",
+                      "type":"string"
+                  }
+              }
+          }
+      }
+  }
+}
